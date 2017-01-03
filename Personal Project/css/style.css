@@ -1,0 +1,45 @@
+body {
+    background: url(images/skogafoss.jpg);
+    
+}
+
+h1 {
+
+	color: white;
+	font-family: 'Lato', serif;
+	font-size: 48px;
+	text-shadow: 12px;
+	text-align: center;
+}
+
+ul {
+
+	list-style-type: none;
+
+}
+
+
+#navbar li {
+    float: left;
+    
+}
+
+#navbar li a {
+	list-style-type: none;
+    display: inline;
+    color: white;
+    font-family: 'Lato', serif;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px 30px;
+    text-decoration: none;
+}
+
+#navbar li a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+#navbar li a.active {
+    color: white;
+    background-color: #f3f3f3;
+}
