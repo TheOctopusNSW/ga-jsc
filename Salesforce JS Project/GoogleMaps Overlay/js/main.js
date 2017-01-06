@@ -1,14 +1,34 @@
-// Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBdw_FjVERdQkItTcWVnt6cWxxxvXSIiS0",
-    authDomain: "js-circuits-83cb6.firebaseapp.com",
-    databaseURL: "https://js-circuits-83cb6.firebaseio.com",
-    storageBucket: "js-circuits-83cb6.appspot.com",
-    messagingSenderId: "1088098295674"
-  };
-  firebase.initializeApp(config);
+//Login to Salesforce
+function sfInit() {
 
-  var database = firebase.database();
+  jsforce.browser.init({
+    loginUrl: 'https://test.salesforce.com',
+    clientId: '3MVG9oZtFCVWuSwNXcMxJ7f2yetjmDhstU1xXLwfiztdnAdzF5gh7yp_PKWtgbQYptk1EZdOx1y1AuMogTN1V',
+    redirectUri: 'file:///Users/administrator/Desktop/jsc/Salesforce%20JS%20Project/GoogleMaps%20Overlay/index.html'
+  });
+
+  var officeRecords = [];
+  
+  jsforce.browser.on('connect', function(conn) 
+  {
+      conn.query("SELECT Office_Name_Marketing__c, Parent_F_Number__c, Active_Recurring_Count__c, BillingStreet, BillingCity, BillingState, BillingPostalCode, Parent_Business_Coach__c, Facebook_Page_URL__c, Office_URL__c, Phone FROM Account WHERE Type = 'Franchisee Single Location' OR Type = 'Franchisee Branch'", 
+        function(err, result) {
+      if (err) { return console.error(err); }
+
+      console.log("total : " + result.totalSize);
+      console.log("fetched : " + result.records.length);
+
+      for (var i = 0; i < result.records.length; i++)
+      {
+        officeRecords.push(result.records[i]);
+      }
+      return officeRecords;
+    });
+  });   
+}
+
+
+
 
 //Initialize GoogleMaps API
 
@@ -19,7 +39,7 @@ var geoConfig = {
 }
 
 function initMap() {
-        
+      
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 5,
           center: {lat:39.5, lng: -98.35, title: 'Center of North America'}
@@ -49,6 +69,7 @@ function createMarkers(map){
     this.lat = lat,
     this.lng = lng
     };
+
 
     var listOfLocations = [];
 
@@ -123,5 +144,5 @@ function retrieveLocations(){
   //finally, we rule the world.
 }
 
-
+sfInit();
 initMap();

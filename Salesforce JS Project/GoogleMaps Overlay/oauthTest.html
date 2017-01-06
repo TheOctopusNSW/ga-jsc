@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="js/jquery-3.0.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsforce/1.7.0/jsforce.min.js"></script>
+  <script>
+
+
+
+jsforce.browser.init({
+  loginUrl: 'https://test.salesforce.com',
+  clientId: '3MVG9oZtFCVWuSwNXcMxJ7f2yetjmDhstU1xXLwfiztdnAdzF5gh7yp_PKWtgbQYptk1EZdOx1y1AuMogTN1V',
+  redirectUri: 'file:///Users/administrator/Desktop/jsc/Salesforce%20JS%20Project/GoogleMaps%20Overlay/index.html'
+});
+
+
+  </script>
+</head>
+<body>
+ <button onclick="jsforce.browser.login()">Login</button>
+</body>
+</html>
